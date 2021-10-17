@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,7 +20,9 @@ import javax.persistence.Table;
 @Table(name = "person")
 public class Person {
     
-    /** Identifier */
+    // ################ attributes #################
+
+    /** Person identifier. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_person", unique = true, nullable = false, insertable = true, updatable = true)
@@ -37,11 +40,9 @@ public class Person {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
+    @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_address", unique = false, nullable = true, insertable = true, updatable = true)
     private Address address;
-
-
 
     // ################ Constructors #################
     public Person() {
