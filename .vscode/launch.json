@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch TesteFuncionamento",
+            "request": "launch",
+            "mainClass": "br.com.projects.hotelreservationservice.TesteFuncionamento",
+            "projectName": "hotel-reservation-service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-HotelReservationServiceApplication<hotel-reservation-service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.com.projects.hotelreservationservice.HotelReservationServiceApplication",
+            "projectName": "hotel-reservation-service",
+            "args": ""
+        }
+    ]
+}

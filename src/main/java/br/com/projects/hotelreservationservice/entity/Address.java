@@ -57,7 +57,7 @@ public class Address {
     public Address() {
     }
 
-
+    
     public Address(String description, String street, int number, String neighborhood, String city, String state,
             String country) {
         this.description = description;
@@ -149,6 +149,7 @@ public class Address {
     public void setCountry(String country) {
         this.country = country;
     }
+    
 
 
     @Override

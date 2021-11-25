@@ -3,12 +3,10 @@ package br.com.projects.hotelreservationservice.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,12 +38,19 @@ public class Person {
     @Column(name = "email", nullable = false)
     private String email;
 
-    @OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_address", unique = false, nullable = true, insertable = true, updatable = true)
-    private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address")
+    private Address address = new Address();
 
     // ################ Constructors #################
     public Person() {
+    }
+
+    public Person(Person person) {
+        this.name = person.name;
+        this.phoneNumber = person.phoneNumber;
+        this.email = person.email;
+        this.address = person.address;
     }
 
     public Person(String name, String phoneNumber, String email, Address address) {
@@ -150,6 +155,10 @@ public class Person {
             return false;
         return true;
     }
+
+    
+
+
     
     
 }
