@@ -3,12 +3,19 @@ package br.com.projects.hotelreservationservice.entity;
 import java.util.Map;
 
 import javax.annotation.Generated;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OrderColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 /**
  * A Class to manipulate all Hotel's Rate.
@@ -21,15 +28,16 @@ public class Rate {
     /** Rate identifier. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_rate", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "id_rate", unique = true)
     private Long id;
 
     /** Brief description of the rate's type: weekdays, weekend, high_season. */
-    @Column(name = "description", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "description")
     private String description;
 
     /** An Array with 7 double fields representing the price of each week days. Ex: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday] */
-    @Column(name = "price_per_day", nullable = false, insertable = true, updatable = true)
+    @ElementCollection
+    @OrderColumn(name = "pos")
     private double[] pricePerDays = new double[7];
 
     // ################ Constructors #################

@@ -19,7 +19,7 @@ import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundIn
 import br.com.projects.hotelreservationservice.service.HotelService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/")
 public class HotelController {
     
     @Autowired

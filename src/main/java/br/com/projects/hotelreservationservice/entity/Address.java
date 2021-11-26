@@ -20,35 +20,35 @@ public class Address {
     /** Address identifier. */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_address", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "id_address", unique = true)
     private Long id;
 
     /** Brief description of the type of address: home, work, etc. */
-    @Column(name = "description", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "description")
     private String description;
 
     /** Street's name */
-    @Column(name = "street", nullable = false, insertable = true, updatable = true)
+    @Column(name = "street")
     private String street;
 
     /** House number */
-    @Column(name = "number", nullable = false, insertable = true, updatable = true)
+    @Column(name = "number")
     private int number;
     
     /** Neighborhood name */
-    @Column(name = "neighborhood", nullable = false, insertable = true, updatable = true)
+    @Column(name = "neighborhood")
     private String neighborhood;
 
     /** City name */
-    @Column(name = "city", nullable = false, insertable = true, updatable = true)
+    @Column(name = "city")
     private String city;
 
     /** State name */
-    @Column(name = "state", nullable = false, insertable = true, updatable = true)
+    @Column(name = "state")
     private String state;
 
     /** Country name */
-    @Column(name = "country", nullable = false, insertable = true, updatable = true)
+    @Column(name = "country")
     private String country;
 
     
