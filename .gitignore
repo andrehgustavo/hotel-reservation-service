@@ -1,7 +1,19 @@
 # Compiled class file
 *.class
 
-/target/
+.classpath
+.project
+.settings/
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.logs
+*.iml
+.idea/
+.eclipse
+
 !.mvn/wrapper/maven-wrapper.jar
 
 # Log file
