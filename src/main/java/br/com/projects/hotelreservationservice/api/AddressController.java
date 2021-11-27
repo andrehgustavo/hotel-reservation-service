@@ -18,6 +18,11 @@ import br.com.projects.hotelreservationservice.entity.Address;
 import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
 import br.com.projects.hotelreservationservice.service.AddressService;
 
+/**
+ * Class to handle all Address related requests
+ * 
+ * @author André Gustavo
+ */
 @RestController
 @RequestMapping("/")
 public class AddressController {
@@ -25,11 +30,20 @@ public class AddressController {
     @Autowired
     private AddressService addressService;
 
+	/**
+	 * Request a List of all system addresses
+	 * @return
+	 */
     @GetMapping("/addresses")
 	public ResponseEntity<List<Address>> findAll() {
 		return new ResponseEntity<>(addressService.findAll(), HttpStatus.OK);
 	}
 
+	/**
+	 * Request a single system address
+	 * @param addressId the address id you want to retrieve.
+	 * @return
+	 */
 	@GetMapping("/addresses/{addressId}")
 	public ResponseEntity<?> getAddress(@PathVariable Long addressId) {
 		try {
@@ -40,6 +54,11 @@ public class AddressController {
 		}		
 	}
 
+	/**
+	 * Request to save an address in the system
+	 * @param theAddress the address you want to save.
+	 * @return
+	 */
 	@PostMapping("/addresses")
 	public ResponseEntity<?> createAddress(@RequestBody Address theAddress) {
 		try {
@@ -50,6 +69,11 @@ public class AddressController {
 		}
 	}
 
+	/**
+	 * Request to update an address in the system
+	 * @param theAddress the address you want to update.
+	 * @return
+	 */
 	@PutMapping("/addresses")
 	public ResponseEntity<?> updateAddress(@RequestBody Address theAddress) {
 		try {
@@ -60,6 +84,11 @@ public class AddressController {
 		}
 	}
 
+	/**
+	 * Request to delete an address in the system
+	 * @param addressId the address id you want to delete.
+	 * @return
+	 */
 	@DeleteMapping("/addresses/{addressId}")
 	public ResponseEntity<?> deleteAddress(@PathVariable Long addressId) {
 		try {

@@ -18,6 +18,11 @@ import br.com.projects.hotelreservationservice.entity.Customer;
 import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
 import br.com.projects.hotelreservationservice.service.CustomerService;
 
+/**
+ * Class to handle all Customer related requests
+ * 
+ * @author André Gustavo
+ */
 @RestController
 @RequestMapping("/")
 public class CustomerController {

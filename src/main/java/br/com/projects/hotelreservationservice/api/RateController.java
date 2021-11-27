@@ -18,6 +18,11 @@ import br.com.projects.hotelreservationservice.entity.Rate;
 import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
 import br.com.projects.hotelreservationservice.service.RateService;
 
+/**
+ * Class to handle all Rate related requests
+ * 
+ * @author André Gustavo
+ */
 @RestController
 @RequestMapping("/")
 public class RateController {
