@@ -63,7 +63,7 @@ public class Hotel implements Serializable{
     @JoinTable(name = "hotel_table_rate", 
       joinColumns = {@JoinColumn(name = "id_hotel", referencedColumnName = "id_hotel")},
       inverseJoinColumns = {@JoinColumn(name = "id_rate", referencedColumnName = "id_rate")})
-    @MapKey(name = "description")
+    @MapKey(name = "priceType")
     private Map<String, Rate> tableRate;
     
     // ################ Constructors #################
