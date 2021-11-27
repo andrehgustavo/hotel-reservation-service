@@ -6,17 +6,19 @@ package br.com.projects.hotelreservationservice.entity;
  */
 public enum LoyaltyProgram {
     /** Regular Customer */
-    REGULAR,
+    REGULAR("Regular"),
     /** Reward Customer */ 
-    REWARD;
+    REWARD("Reward");
 
+    private String loyatyProgram;
+
+    private LoyaltyProgram(String type){
+        this.loyatyProgram = type;
+    }
+
+    @Override
     public String toString(){
-        switch (this){
-            case REGULAR: return "Cliente comum";
-            case REWARD: return "Cliente com cartão fidelidade";
-            default:
-                return null;
-        }
+        return loyatyProgram;
     }
 
     public boolean isRegular(){
