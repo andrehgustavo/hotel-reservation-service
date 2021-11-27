@@ -2,20 +2,16 @@ package br.com.projects.hotelreservationservice.entity;
 
 import java.util.Map;
 
-import javax.annotation.Generated;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OrderColumn;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 /**
  * A Class to manipulate all Hotel's Rate.
@@ -35,22 +31,31 @@ public class Rate {
     @Column(name = "description")
     private String description;
 
+    /** Map name. */
+    @Column(name = "price_type")
+    private String priceType;
+    
+
     /** An Array with 7 double fields representing the price of each week days. Ex: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday] */
     @ElementCollection
-    @OrderColumn(name = "pos")
-    private double[] pricePerDays = new double[7];
+    @CollectionTable(name = "price_per_days", 
+      joinColumns = {@JoinColumn(name = "id_rate", referencedColumnName = "id_rate")})
+    @MapKeyColumn(name = "name")
+    @Column(name = "price")
+    private Map<String, Double> pricePerDays;
 
     // ################ Constructors #################
     public Rate(){
 
     }
 
-    public Rate(String description, double[] pricePerDays) {
+    public Rate(String description, String priceType, Map<String, Double> pricePerDays) {
         this.description = description;
+        this.priceType = priceType;
         this.pricePerDays = pricePerDays;
     }
-    // ################ Getters/Setters #################
 
+    // ################ Getters/Setters #################
     public Long getId() {
         return id;
     }
@@ -67,13 +72,22 @@ public class Rate {
         this.description = description;
     }
 
-    public double[] getPricePerDays() {
+    public Map<String, Double> getPricePerDays() {
         return pricePerDays;
     }
 
-    public void setPricePerDays(double[] pricePerDays) {
+    public void setPricePerDays(Map<String, Double> pricePerDays) {
         this.pricePerDays = pricePerDays;
     }
+
+    public String getPriceType() {
+        return priceType;
+    }
+
+    public void setPriceType(String priceType) {
+        this.priceType = priceType;
+    }
+    
     
 
     
