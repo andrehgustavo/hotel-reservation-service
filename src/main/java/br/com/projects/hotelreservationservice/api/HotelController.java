@@ -96,7 +96,7 @@ public class HotelController {
 	public ResponseEntity<?> deleteHotel(@PathVariable Long hotelId) {
 		try {
 			hotelService.deleteById(hotelId);
-			return new ResponseEntity<>("Médico com id " + hotelId + " deletado com sucesso.", HttpStatus.OK);
+			return new ResponseEntity<>("Hotel com id " + hotelId + " deletado com sucesso.", HttpStatus.OK);
 		}catch (ErrorRegisterNotFoundInDataBase e) {
 			return ResponseEntity.accepted().body(e.toString());
 		}
