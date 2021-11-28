@@ -3,12 +3,9 @@ package br.com.projects.hotelreservationservice.entity;
 import java.io.Serializable;
 import java.util.Map;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +43,7 @@ public class Hotel implements Serializable{
     @Column(name = "email")
     private String email;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
     @JoinColumn(name = "id_address")
     private Address address = new Address();
     
