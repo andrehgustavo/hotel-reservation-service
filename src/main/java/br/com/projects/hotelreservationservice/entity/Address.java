@@ -1,5 +1,7 @@
 package br.com.projects.hotelreservationservice.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "address")
-public class Address {
+public class Address implements Serializable{
 
     // ################ attributes #################
 

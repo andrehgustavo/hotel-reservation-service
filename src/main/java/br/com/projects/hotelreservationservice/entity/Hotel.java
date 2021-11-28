@@ -45,7 +45,7 @@ public class Hotel implements Serializable{
 
     @OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
     @JoinColumn(name = "id_address")
-    private Address address = new Address();
+    private Address address;
     
     /** CNPJ number */
     @Column(name = "cnpj", unique = true)

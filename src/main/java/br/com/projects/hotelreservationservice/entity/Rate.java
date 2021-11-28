@@ -1,5 +1,6 @@
 package br.com.projects.hotelreservationservice.entity;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import javax.persistence.CollectionTable;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "rate")
-public class Rate {
+public class Rate implements Serializable{
 
     // ################ attributes #################
     /** Rate identifier. */
