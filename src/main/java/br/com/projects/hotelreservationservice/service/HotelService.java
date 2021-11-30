@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import br.com.projects.hotelreservationservice.entity.Hotel;
+import br.com.projects.hotelreservationservice.entity.LoyaltyProgram;
 
 /**
  * Service's Hotel interface
@@ -27,5 +28,17 @@ public interface HotelService {
 	 * @return the Cheapest hotel in JSON format.
 	 */
     public JsonNode getCheapest(String type, List<String> dates);
+
+    public Hotel findByName(String name);
+
+	/**
+	 * Method to calculate the total price of a period.
+	 * @param loyaltyProgram price based on loyalty program
+	 * @param weekDays number of weekdays
+	 * @param weekendsDays number of weekend days
+	 * @param hotel hotel
+	 * @return
+	 */
+	public double calculateTotalPrice(LoyaltyProgram loyaltyProgram, int weekDays, int weekendsDays, Hotel hotel);
 
 }

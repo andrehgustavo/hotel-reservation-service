@@ -86,8 +86,7 @@ public class HotelServiceImpl implements HotelService{
 		double total = 0.0;
 		Hotel theHotel = new Hotel();
 		for (Hotel hotel : hotels) {
-			total = hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKDAYS") * weekDays +
-					hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKENDDAYS") * weekendsDays;
+			total = calculateTotalPrice(loyaltyProgram, weekDays, weekendsDays, hotel);
 			if(total < cheapest){
 				cheapest = total;
 				theHotel = hotel;
@@ -96,6 +95,12 @@ public class HotelServiceImpl implements HotelService{
 			}
 		} 
 		return convertObjectToJson(theHotel);
+	}
+
+	@Override
+	public double calculateTotalPrice(LoyaltyProgram loyaltyProgram, int weekDays, int weekendsDays, Hotel hotel) {
+		return hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKDAYS") * weekDays +
+				hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKENDDAYS") * weekendsDays;
 	}
 
 	/**
@@ -136,6 +141,11 @@ public class HotelServiceImpl implements HotelService{
 		}
 		int[] answer = {weekdays, weekends};
 		return answer;
+	}
+
+	@Override
+	public Hotel findByName(String name) {
+		return hotelRepository.findByName(name);
 	}
 
 

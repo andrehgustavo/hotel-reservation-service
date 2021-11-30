@@ -75,8 +75,18 @@ public class Customer implements Serializable{
         this.loyalty = LoyaltyProgram.REGULAR;
     }
 
+    public Customer(String name, String phoneNumber, String email, LoyaltyProgram loyalty) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = new Address();
+        this.loyalty = loyalty;
+    }
+
     // ################ Getters/Setters #################
     
+   
+
     public Long getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package br.com.projects.hotelreservationservice.entity;
 
 import java.io.Serializable;
+import java.util.Hashtable;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
@@ -76,6 +77,12 @@ public class Hotel implements Serializable{
         this.cnpj = cnpj;
         this.classification = classification;
         this.tableRate = tableRate;
+    }
+
+    public Hotel(String hotelName) {
+        this.name = hotelName;
+        this.address = new Address();
+        this.tableRate = new Hashtable<String, Rate>();
     }
 
     // ################ Getters/Setters #################

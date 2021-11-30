@@ -15,4 +15,6 @@ public interface CustomerService {
 
 	public void deleteById(Long theId);
 
+    public Customer findByEmail(String email);
+
 }
