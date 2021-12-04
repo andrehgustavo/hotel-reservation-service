@@ -28,14 +28,20 @@ git clone https://github.com/andrehgustavo/hotel-reservation-service
 ```
 
 2. Configure PostgreSQL
-First run the 'create_database.sql' file found in the src\main\resources\static directory in your Postgres database manager. Then run the second script, 'populate_db.sql' to populate the Database  . Then, open src/main/resources/application.properties file and change the spring datasource username and password as per your PostgreSQL installation.
+Option 1 - In PGAdmin, create a database called 'hotel-reservation-db'. Then you must open src/main/resources/application.properties file and change the spring datasource username and password as per your PostgreSQL installation. So, you can start the springbootAplicattion, and this will create all tables necessary for the
+databank. Nextly, run the second script, 'populate_db.sql' to populate the Database.
+
+Option 2 - Open the psql command-line tool and run 'db_create.sql' file found in the src\main\resources\static directory in your Postgres database manager to create the database, this script creates all tables. Then run the second script, 'populate_db.sql' to populate the Database. Then, open src/main/resources/application.properties file and change the spring datasource username and password as per your PostgreSQL installation.
 
 ## Usage example
 
+- As a user, I would like to know the cheapest hotel from a date list.
+- As a user, I would like to schedule a booking and receive a email confirmation.
+- As a user, I would like to cancel a booking and receive a email confirmation.
+- As a user, I would like to consult a booking.
 - As a user, I would like to list all hotels;
 - As a user, I would like to register a new hotel;
 - As a user, I would like to edit an existing hotel;
-- As a user, I would like to know the cheapest hotel from a date list.
 
 ## Development setup
 
@@ -50,11 +56,39 @@ mvn spring-boot:run
 ```
 
 ## Endpoints
+    - [POST] Schedule a booking ("hotel-reservation/api/v1/bookings/schedule")
+    - [GET] Consult a booking ("hotel-reservation/api/v1/bookings/consult")
+    - [PUT] Cancel a booking ("hotel-reservation/api/v1/bookings/cancel")
+    - [GET] List all bookings ("hotel-reservation/api/v1/bookings")
+    - [GET] Get a specific booking ("hotel-reservation/api/v1/bookings/{id}")
+    - [POST] Add new booking ("hotel-reservation/api/v1/bookings/")
+    - [PUT] Update a booking ("hotel-reservation/api/v1/bookings/")
+    - [DELETE] Delete a booking ("hotel-reservation/api/v1/bookings/{id}")
+
+    - [GET] Get cheapest hotel from a date list ("hotel-reservation/api/v1/cheapest")
     - [GET] List all hotels ("hotel-reservation/api/v1/hotels")
     - [GET] Get a specific hotel ("hotel-reservation/api/v1/hotels/{id}")
     - [POST] Add new hotel ("hotel-reservation/api/v1/hotels/")
     - [PUT] Update a hotel ("hotel-reservation/api/v1/hotels/")
     - [DELETE] Delete a hotel ("hotel-reservation/api/v1/hotels/{id}")
+
+    - [GET] List all rates ("hotel-reservation/api/v1/rates")
+    - [GET] Get a specific rate ("hotel-reservation/api/v1/rates/{id}")
+    - [POST] Add new rate ("hotel-reservation/api/v1/rates/")
+    - [PUT] Update a rate ("hotel-reservation/api/v1/rates/")
+    - [DELETE] Delete a rate ("hotel-reservation/api/v1/rates/{id}")
+
+    - [GET] List all addresses ("hotel-reservation/api/v1/addresses")
+    - [GET] Get a specific address ("hotel-reservation/api/v1/addresses/{id}")
+    - [POST] Add new address ("hotel-reservation/api/v1/addresses/")
+    - [PUT] Update a address ("hotel-reservation/api/v1/addresses/")
+    - [DELETE] Delete a address ("hotel-reservation/api/v1/addresses/{id}")
+
+    - [GET] List all customers ("hotel-reservation/api/v1/customers")
+    - [GET] Get a specific customer ("hotel-reservation/api/v1/customers/{id}")
+    - [POST] Add new customer ("hotel-reservation/api/v1/customers/")
+    - [PUT] Update a customer ("hotel-reservation/api/v1/customers/")
+    - [DELETE] Delete a customer ("hotel-reservation/api/v1/customers/{id}")
 
 //TODO: Terminar endpoints
 ## Meta
