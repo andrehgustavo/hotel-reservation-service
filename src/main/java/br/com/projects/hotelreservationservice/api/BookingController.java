@@ -3,11 +3,16 @@ package br.com.projects.hotelreservationservice.api;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +33,7 @@ import br.com.projects.hotelreservationservice.service.BookingService;
  * @author André Gustavo
  */
 @RestController
+@Validated
 @RequestMapping("/")
 public class BookingController {
     
@@ -104,11 +110,11 @@ public class BookingController {
 	}
 
 	@PostMapping("/bookings/schedule")
-	public ResponseEntity<?> scheduleBooking(@RequestParam String name, 
+	public ResponseEntity<?> scheduleBooking(@RequestParam @NotBlank String name, 
 											@RequestParam String phoneNumber,
-											@RequestParam String email,
-											@RequestParam List<String> period,
-											@RequestParam String hotel,
+											@RequestParam @NotBlank @Email String email,
+											@RequestParam @NotEmpty List<String> period,
+											@RequestParam @NotBlank String hotel,
 											@RequestParam String bookingType,
 											@RequestParam String remarks) throws ParseException {
 		try {
@@ -120,12 +126,12 @@ public class BookingController {
 	}
 
 	@GetMapping("/bookings/consult")
-	public ResponseEntity<?> consultBooking(@RequestParam Long bookingNumber, 
-											@RequestParam String hotel,
-											@RequestParam String bookingType,
-											@RequestParam List<String> period) throws ParseException {
+	public ResponseEntity<?> consultBooking(@RequestParam @NotBlank String bookingNumber, 
+											@RequestParam @NotBlank String hotel,
+											@RequestParam @NotBlank String bookingType,
+											@RequestParam @NotEmpty List<String> period) throws ParseException {
 		try {
-			JsonNode booking = bookingService.consultBooking(bookingNumber, period, hotel, bookingType);
+			JsonNode booking = bookingService.consultBooking(Long.parseLong(bookingNumber), period, hotel, bookingType);
 			return new ResponseEntity<>(booking, HttpStatus.OK);
 		}catch (ErrorRegisterNotFoundInDataBase e) {
 			return ResponseEntity.accepted().body(e.toString());
@@ -138,9 +144,9 @@ public class BookingController {
 	 * @return
 	 */
 	@PutMapping("/bookings/cancel")
-	public ResponseEntity<?> cancelBooking(@RequestParam Long bookingNumber) {
+	public ResponseEntity<?> cancelBooking(@RequestParam @NotBlank String bookingNumber) {
 		try {
-			Booking booking = bookingService.cancelBooking(bookingNumber);
+			Booking booking = bookingService.cancelBooking(Long.parseLong(bookingNumber));
 			return new ResponseEntity<>("Reserva cancelada com Sucesso", HttpStatus.OK);
 		}catch (ErrorRegisterNotFoundInDataBase e) {
 			return new ResponseEntity<>("Não foi possível cancelar essa reserva.", HttpStatus.FAILED_DEPENDENCY);
