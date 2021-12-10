@@ -1,4 +1,4 @@
-package br.com.projects.hotelreservationservice.Utils;
+package br.com.projects.hotelreservationservice.utils;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;

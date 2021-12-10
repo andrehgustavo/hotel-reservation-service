@@ -10,11 +10,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.projects.hotelreservationservice.Utils.Utils;
 import br.com.projects.hotelreservationservice.entity.Hotel;
 import br.com.projects.hotelreservationservice.entity.LoyaltyProgram;
 import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
 import br.com.projects.hotelreservationservice.repository.HotelRepository;
+import br.com.projects.hotelreservationservice.utils.Utils;
 
 /**
  * Service for Hotel

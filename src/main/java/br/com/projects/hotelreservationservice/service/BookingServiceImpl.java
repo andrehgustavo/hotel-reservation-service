@@ -13,7 +13,6 @@ import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.projects.hotelreservationservice.Utils.Utils;
 import br.com.projects.hotelreservationservice.entity.Booking;
 import br.com.projects.hotelreservationservice.entity.Customer;
 import br.com.projects.hotelreservationservice.entity.Hotel;
@@ -21,6 +20,7 @@ import br.com.projects.hotelreservationservice.entity.LoyaltyProgram;
 import br.com.projects.hotelreservationservice.entity.ResponseBooking;
 import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
 import br.com.projects.hotelreservationservice.repository.BookingRepository;
+import br.com.projects.hotelreservationservice.utils.Utils;
 
 @Service
 public class BookingServiceImpl implements BookingService{

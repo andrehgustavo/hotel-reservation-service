@@ -1,4 +1,4 @@
-package br.com.projects.hotelreservationservice.api;
+package br.com.projects.hotelreservationservice.controllers;
 
 import java.text.ParseException;
 import java.util.List;
@@ -25,10 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projects.hotelreservationservice.Utils.Utils;
 import br.com.projects.hotelreservationservice.entity.Booking;
 import br.com.projects.hotelreservationservice.entity.ResponseBooking;
 import br.com.projects.hotelreservationservice.service.BookingService;
+import br.com.projects.hotelreservationservice.utils.Utils;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * Class to handle all Booking related requests
@@ -47,7 +48,8 @@ public class BookingController {
 	 * Request a List of all system active bookings
 	 * @return
 	 */
-    @GetMapping("/bookings")
+	@ApiOperation(value = "Retorna uma lista de reservas")
+    @GetMapping(value = "/bookings", produces="application/json")
 	public ResponseEntity<List<Booking>> findAll() {
 		return new ResponseEntity<>(bookingService.findAll(), HttpStatus.OK);
 	}
@@ -57,7 +59,7 @@ public class BookingController {
 	 * @param bookingId the Booking id you want to retrieve.
 	 * @return
 	 */
-	@GetMapping("/bookings/{bookingId}")
+	@GetMapping(value = "/bookings/{bookingId}", produces="application/json")
 	public ResponseEntity<?> getBooking(@PathVariable Long bookingId) {
 		Booking theBooking = bookingService.findById(bookingId);
 		return new ResponseEntity<>(theBooking, HttpStatus.OK);
@@ -68,7 +70,7 @@ public class BookingController {
 	 * @param theBooking the Booking you want to save.
 	 * @return
 	 */
-	@PostMapping("/bookings")
+	@PostMapping(value = "/bookings", produces="application/json", consumes="application/json")
 	public ResponseEntity<?> createBooking(@RequestBody @Valid Booking theBooking) {
 		Booking savedBooking = bookingService.save(theBooking);
 		return new ResponseEntity<>(savedBooking.getId(), HttpStatus.CREATED);
@@ -79,7 +81,7 @@ public class BookingController {
 	 * @param theBooking the Booking you want to update.
 	 * @return
 	 */
-	@PutMapping("/bookings")
+	@PutMapping(value = "/bookings", produces="application/json", consumes="application/json")
 	public ResponseEntity<?> updateBooking(@RequestBody Booking theBooking) {
 		bookingService.update(theBooking);
 		return new ResponseEntity<>(theBooking, HttpStatus.OK);
@@ -90,13 +92,13 @@ public class BookingController {
 	 * @param bookingId the Booking id you want to delete.
 	 * @return
 	 */
-	@DeleteMapping("/bookings/{bookingId}")
+	@DeleteMapping(value = "/bookings/{bookingId}",  produces="application/json")
 	public ResponseEntity<?> deleteBooking(@PathVariable @NotNull Long bookingId) {
 		bookingService.deleteById(bookingId);
 		return new ResponseEntity<>(Utils.convertMsgToJson("message", "Reserva com id " + bookingId + " deletado com sucesso."), HttpStatus.OK);
 	}
 
-	@PostMapping("/bookings/schedule")
+	@PostMapping(value = "/bookings/schedule",  produces="application/json")
 	public ResponseEntity<?> scheduleBooking(@RequestParam @NotBlank String name, 
 											@RequestParam String phoneNumber,
 											@RequestParam @NotBlank @Email String email,
@@ -108,7 +110,7 @@ public class BookingController {
 		return new ResponseEntity<>(bookingNumber, HttpStatus.OK);		
 	}
 
-	@GetMapping("/bookings/consult")
+	@GetMapping(value = "/bookings/consult", produces="application/json")
 	public ResponseEntity<?> consultBooking(@RequestParam @NotBlank String bookingNumber, 
 											@RequestParam @NotBlank String hotel,
 											@RequestParam @NotBlank String bookingType,
@@ -122,7 +124,7 @@ public class BookingController {
 	 * @param theBooking the Booking you want to update.
 	 * @return
 	 */
-	@PutMapping("/bookings/cancel")
+	@PutMapping(value = "/bookings/cancel",  produces="application/json")
 	public ResponseEntity<?> cancelBooking(@RequestParam @NotBlank String bookingNumber) {
 			JsonNode msg = bookingService.cancelBooking(Long.parseLong(bookingNumber));
 			return new ResponseEntity<>(msg, HttpStatus.OK);

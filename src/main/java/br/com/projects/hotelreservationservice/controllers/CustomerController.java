@@ -1,4 +1,4 @@
-package br.com.projects.hotelreservationservice.api;
+package br.com.projects.hotelreservationservice.controllers;
 
 import java.util.List;
 

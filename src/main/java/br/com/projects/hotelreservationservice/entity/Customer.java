@@ -15,6 +15,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Class to represent a customer
  * @author André
@@ -24,12 +26,14 @@ import javax.validation.constraints.Pattern;
 public class Customer implements Serializable{
 
     // ################ attributes #################
+    @ApiModelProperty(value = "Código da cliente")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_hotel", unique = true)
     private Long id;
 
     /** Person/company name */
+    @ApiModelProperty(value = "Nome do cliente")
     @Column(name = "name")
     @NotBlank
     private String name;

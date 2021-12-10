@@ -1,4 +1,4 @@
-package br.com.projects.hotelreservationservice.api;
+package br.com.projects.hotelreservationservice.controllers;
 
 import java.util.List;
 
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projects.hotelreservationservice.entity.Rate;
-import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
 import br.com.projects.hotelreservationservice.service.RateService;
 
 /**
