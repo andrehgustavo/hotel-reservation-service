@@ -19,6 +19,11 @@ import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundIn
 @ControllerAdvice
 public class ErrorHandlingControllerAdvice {
     
+    /**
+     * Handle with ConstraintViolationException exceptions.
+     * @param e
+     * @return
+     */
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
@@ -32,6 +37,11 @@ public class ErrorHandlingControllerAdvice {
       return error;
     }
   
+    /**
+     * Handle with MethodArgumentNotValidException exceptions.
+     * @param e
+     * @return
+     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
@@ -45,7 +55,12 @@ public class ErrorHandlingControllerAdvice {
       return error;
     }
 
-/*     @ExceptionHandler(ErrorRegisterNotFoundInDataBase.class)
+    /**
+     * Handle with ErrorRegisterNotFoundInDataBase exceptions.
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(ErrorRegisterNotFoundInDataBase.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     ValidationErrorResponse onErrorRegisterNotFoundInDataBase(
@@ -54,5 +69,20 @@ public class ErrorHandlingControllerAdvice {
       error.getViolations().add(
           new Violation("id", e.getMessage()));
       return error;
-    } */
+    } 
+
+    /**
+     * Handle with generic exceptions.
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    ValidationErrorResponse handleException(Exception e) {
+      ValidationErrorResponse error = new ValidationErrorResponse();
+      error.getViolations().add(
+          new Violation("Generic", e.getMessage()));
+      return error;
+    } 
 }

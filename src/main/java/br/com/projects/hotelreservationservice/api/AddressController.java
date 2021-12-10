@@ -46,12 +46,8 @@ public class AddressController {
 	 */
 	@GetMapping("/addresses/{addressId}")
 	public ResponseEntity<?> getAddress(@PathVariable Long addressId) {
-		try {
-			Address theAddress = addressService.findById(addressId);
-			return new ResponseEntity<>(theAddress, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}		
+		Address theAddress = addressService.findById(addressId);
+		return new ResponseEntity<>(theAddress, HttpStatus.OK);	
 	}
 
 	/**
@@ -61,12 +57,8 @@ public class AddressController {
 	 */
 	@PostMapping("/addresses")
 	public ResponseEntity<?> createAddress(@RequestBody Address theAddress) {
-		try {
-			Address savedAddress = addressService.save(theAddress);
-			return new ResponseEntity<>(savedAddress.getId(), HttpStatus.CREATED);
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e.toString());
-		}
+		Address savedAddress = addressService.save(theAddress);
+		return new ResponseEntity<>(savedAddress.getId(), HttpStatus.CREATED);
 	}
 
 	/**
@@ -76,12 +68,8 @@ public class AddressController {
 	 */
 	@PutMapping("/addresses")
 	public ResponseEntity<?> updateAddress(@RequestBody Address theAddress) {
-		try {
-			addressService.update(theAddress);
-			return new ResponseEntity<>(theAddress, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}
+		addressService.update(theAddress);
+		return new ResponseEntity<>(theAddress, HttpStatus.OK);
 	}
 
 	/**
@@ -91,11 +79,7 @@ public class AddressController {
 	 */
 	@DeleteMapping("/addresses/{addressId}")
 	public ResponseEntity<?> deleteAddress(@PathVariable Long addressId) {
-		try {
-			addressService.deleteById(addressId);
-			return new ResponseEntity<>("Address com id " + addressId + " deletado com sucesso.", HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}
+		addressService.deleteById(addressId);
+		return new ResponseEntity<>("Address com id " + addressId + " deletado com sucesso.", HttpStatus.OK);
 	}
 }

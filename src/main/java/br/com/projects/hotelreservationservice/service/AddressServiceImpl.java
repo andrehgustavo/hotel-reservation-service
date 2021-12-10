@@ -29,15 +29,13 @@ public class AddressServiceImpl implements AddressService{
 			return result.get();
 		}else {
 			//Address não encontrado
-			throw new ErrorRegisterNotFoundInDataBase("Address com Id " + theId + " não existe no banco de dados.");
+			throw new ErrorRegisterNotFoundInDataBase("Endereço com Id " + theId + " não existe no banco de dados.");
 		}
 	}
 
 	@Override
 	public Address save(Address theAddress) {
-		// Caso o usuário envie um ID do frontend pelo JSON,
-		// esse resguardo seta ele como 0, para o sistema forçar a entender como um novo
-		// ao invés de fazer o update - Boas práticas!
+
 		theAddress.setId(0L);
 		return addressRepository.save(theAddress);		
 	}
@@ -49,7 +47,7 @@ public class AddressServiceImpl implements AddressService{
 		if(optionalAddress.isPresent()){
 			addressRepository.deleteById(theId);
 		}else {		
-			throw new ErrorRegisterNotFoundInDataBase("Address com Id " + theId + " não existe no banco de dados.");
+			throw new ErrorRegisterNotFoundInDataBase("Endereço com Id " + theId + " não existe no banco de dados.");
 		}
 	}
 
@@ -60,7 +58,7 @@ public class AddressServiceImpl implements AddressService{
 		if(optionalAddress.isPresent()){
 			return addressRepository.save(theAddress);
 		}else{
-			throw new ErrorRegisterNotFoundInDataBase("Address com Id " + theAddress.getId() + " não existe no banco de dados.");
+			throw new ErrorRegisterNotFoundInDataBase("Endereço com Id " + theAddress.getId() + " não existe no banco de dados.");
 		}
 		
 	}

@@ -29,15 +29,13 @@ public class CustomerServiceImpl implements CustomerService{
 			return result.get();
 		}else {
 			//Customer não encontrado
-			throw new ErrorRegisterNotFoundInDataBase("Customer com Id " + theId + " não existe no banco de dados.");
+			throw new ErrorRegisterNotFoundInDataBase("Cliente com Id " + theId + " não existe no banco de dados.");
 		}
 	}
 
 	@Override
 	public Customer save(Customer theCustomer) {
-		// Caso o usuário envie um ID do frontend pelo JSON,
-		// esse resguardo seta ele como 0, para o sistema forçar a entender como um novo
-		// ao invés de fazer o update - Boas práticas!
+
 		theCustomer.setId(0L);
 		return customerRepository.save(theCustomer);		
 	}
@@ -49,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService{
 		if(optionalCustomer.isPresent()){
 			customerRepository.deleteById(theId);
 		}else {		
-			throw new ErrorRegisterNotFoundInDataBase("Customer com Id " + theId + " não existe no banco de dados.");
+			throw new ErrorRegisterNotFoundInDataBase("Cliente com Id " + theId + " não existe no banco de dados.");
 		}
 	}
 
@@ -60,7 +58,7 @@ public class CustomerServiceImpl implements CustomerService{
 		if(optionalCustomer.isPresent()){
 			return customerRepository.save(theCustomer);
 		}else{
-			throw new ErrorRegisterNotFoundInDataBase("Customer com Id " + theCustomer.getId() + " não existe no banco de dados.");
+			throw new ErrorRegisterNotFoundInDataBase("Cliente com Id " + theCustomer.getId() + " não existe no banco de dados.");
 		}
 		
 	}

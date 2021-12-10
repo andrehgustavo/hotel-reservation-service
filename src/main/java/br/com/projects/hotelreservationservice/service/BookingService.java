@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import br.com.projects.hotelreservationservice.entity.Booking;
+import br.com.projects.hotelreservationservice.entity.ResponseBooking;
 
 /**
  * Booking Service.
@@ -15,8 +16,10 @@ import br.com.projects.hotelreservationservice.entity.Booking;
 
 public interface BookingService {
 
+	/** Static number representing status CANCELLED */
 	public static final int CANCELLED = 0;
 	
+	/** Static number representing status CONFIRMED */
 	public static final int CONFIRMED = 1;
 
     public List<Booking> findAll();
@@ -44,8 +47,8 @@ public interface BookingService {
     public JsonNode scheduleBooking(String name, String phoneNumber, String email, List<String> period,
             String hotel, String bookingType, String remarks) throws ParseException;
 
-	public JsonNode consultBooking(Long bookingNumber, List<String> period, String hotel, String bookingType);
+	public ResponseBooking consultBooking(Long bookingNumber, List<String> period, String hotel, String bookingType);
 
-	public Booking cancelBooking(Long bookingNumber);
+	public JsonNode cancelBooking(Long bookingNumber);
 
 }

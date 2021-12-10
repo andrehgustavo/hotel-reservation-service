@@ -5,13 +5,12 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.projects.hotelreservationservice.Utils.Utils;
 import br.com.projects.hotelreservationservice.entity.Hotel;
 import br.com.projects.hotelreservationservice.entity.LoyaltyProgram;
 import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
@@ -45,9 +44,7 @@ public class HotelServiceImpl implements HotelService{
 
 	@Override
 	public Hotel save(Hotel theHotel) {
-		// Caso o usuário envie um ID do frontend pelo JSON,
-		// esse resguardo seta ele como 0, para o sistema forçar a entender como um novo
-		// ao invés de fazer o update - Boas práticas!
+
 		theHotel.setId(0L);
 		return hotelRepository.save(theHotel);		
 	}
@@ -94,31 +91,13 @@ public class HotelServiceImpl implements HotelService{
 				theHotel = theHotel.getClassification() > hotel.getClassification() ? theHotel : hotel;
 			}
 		} 
-		return convertObjectToJson(theHotel);
+		return Utils.convertMsgToJson("cheapest", theHotel.getName());
 	}
 
 	@Override
 	public double calculateTotalPrice(LoyaltyProgram loyaltyProgram, int weekDays, int weekendsDays, Hotel hotel) {
 		return hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKDAYS") * weekDays +
 				hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKENDDAYS") * weekendsDays;
-	}
-
-	/**
-	 * Mount the cheapest hotel in JSON format.
-	 * @param theHotel a Hotel that will be converted.
-	 * @return a Json with cheapest hotel.
-	 */
-	private JsonNode convertObjectToJson(Hotel theHotel) {
-		String json_str = "{\"cheapest\":\"" + theHotel.getName() + "\"}";
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode node = null;
-		try {
-			node = mapper.readTree(json_str);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-       	return node;
 	}
 
 	/**

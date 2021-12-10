@@ -37,41 +37,25 @@ public class RateController {
 
 	@GetMapping("/rates/{rateId}")
 	public ResponseEntity<?> getRate(@PathVariable Long rateId) {
-		try {
-			Rate theRate = rateService.findById(rateId);
-			return new ResponseEntity<>(theRate, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}		
+		Rate theRate = rateService.findById(rateId);
+		return new ResponseEntity<>(theRate, HttpStatus.OK);		
 	}
 
 	@PostMapping("/rates")
 	public ResponseEntity<?> createRate(@RequestBody Rate theRate) {
-		try {
-			Rate savedRate = rateService.save(theRate);
-			return new ResponseEntity<>(savedRate.getId(), HttpStatus.CREATED);
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e.toString());
-		}
+		Rate savedRate = rateService.save(theRate);
+		return new ResponseEntity<>(savedRate.getId(), HttpStatus.CREATED);
 	}
 
 	@PutMapping("/rates")
 	public ResponseEntity<?> updateRate(@RequestBody Rate theRate) {
-		try {
-			rateService.update(theRate);
-			return new ResponseEntity<>(theRate, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}
+		rateService.update(theRate);
+		return new ResponseEntity<>(theRate, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/rates/{rateId}")
 	public ResponseEntity<?> deleteRate(@PathVariable Long rateId) {
-		try {
-			rateService.deleteById(rateId);
-			return new ResponseEntity<>("Rate com id " + rateId + " deletado com sucesso.", HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}
+		rateService.deleteById(rateId);
+		return new ResponseEntity<>("Taxa com id " + rateId + " deletado com sucesso.", HttpStatus.OK);
 	}
 }

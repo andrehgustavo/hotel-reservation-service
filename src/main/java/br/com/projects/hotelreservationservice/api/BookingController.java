@@ -3,9 +3,11 @@ package br.com.projects.hotelreservationservice.api;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -23,8 +25,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.projects.hotelreservationservice.Utils.Utils;
 import br.com.projects.hotelreservationservice.entity.Booking;
-import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
+import br.com.projects.hotelreservationservice.entity.ResponseBooking;
 import br.com.projects.hotelreservationservice.service.BookingService;
 
 /**
@@ -56,12 +59,8 @@ public class BookingController {
 	 */
 	@GetMapping("/bookings/{bookingId}")
 	public ResponseEntity<?> getBooking(@PathVariable Long bookingId) {
-		try {
-			Booking theBooking = bookingService.findById(bookingId);
-			return new ResponseEntity<>(theBooking, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}		
+		Booking theBooking = bookingService.findById(bookingId);
+		return new ResponseEntity<>(theBooking, HttpStatus.OK);
 	}
 
 	/**
@@ -70,13 +69,9 @@ public class BookingController {
 	 * @return
 	 */
 	@PostMapping("/bookings")
-	public ResponseEntity<?> createBooking(@RequestBody Booking theBooking) {
-		try {
-			Booking savedBooking = bookingService.save(theBooking);
-			return new ResponseEntity<>(savedBooking.getId(), HttpStatus.CREATED);
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().body(e.toString());
-		}
+	public ResponseEntity<?> createBooking(@RequestBody @Valid Booking theBooking) {
+		Booking savedBooking = bookingService.save(theBooking);
+		return new ResponseEntity<>(savedBooking.getId(), HttpStatus.CREATED);
 	}
 
 	/**
@@ -86,12 +81,8 @@ public class BookingController {
 	 */
 	@PutMapping("/bookings")
 	public ResponseEntity<?> updateBooking(@RequestBody Booking theBooking) {
-		try {
-			bookingService.update(theBooking);
-			return new ResponseEntity<>(theBooking, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}
+		bookingService.update(theBooking);
+		return new ResponseEntity<>(theBooking, HttpStatus.OK);
 	}
 
 	/**
@@ -100,13 +91,9 @@ public class BookingController {
 	 * @return
 	 */
 	@DeleteMapping("/bookings/{bookingId}")
-	public ResponseEntity<?> deleteBooking(@PathVariable Long bookingId) {
-		try {
-			bookingService.deleteById(bookingId);
-			return new ResponseEntity<>("Booking com id " + bookingId + " deletado com sucesso.", HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}
+	public ResponseEntity<?> deleteBooking(@PathVariable @NotNull Long bookingId) {
+		bookingService.deleteById(bookingId);
+		return new ResponseEntity<>(Utils.convertMsgToJson("message", "Reserva com id " + bookingId + " deletado com sucesso."), HttpStatus.OK);
 	}
 
 	@PostMapping("/bookings/schedule")
@@ -117,12 +104,8 @@ public class BookingController {
 											@RequestParam @NotBlank String hotel,
 											@RequestParam String bookingType,
 											@RequestParam String remarks) throws ParseException {
-		try {
-			JsonNode bookingNumber = bookingService.scheduleBooking(name, phoneNumber, email, period, hotel, bookingType, remarks);
-			return new ResponseEntity<>(bookingNumber, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}		
+		JsonNode bookingNumber = bookingService.scheduleBooking(name, phoneNumber, email, period, hotel, bookingType, remarks);
+		return new ResponseEntity<>(bookingNumber, HttpStatus.OK);		
 	}
 
 	@GetMapping("/bookings/consult")
@@ -130,12 +113,8 @@ public class BookingController {
 											@RequestParam @NotBlank String hotel,
 											@RequestParam @NotBlank String bookingType,
 											@RequestParam @NotEmpty List<String> period) throws ParseException {
-		try {
-			JsonNode booking = bookingService.consultBooking(Long.parseLong(bookingNumber), period, hotel, bookingType);
-			return new ResponseEntity<>(booking, HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return ResponseEntity.accepted().body(e.toString());
-		}		
+		ResponseBooking booking = bookingService.consultBooking(Long.parseLong(bookingNumber), period, hotel, bookingType);
+			return new ResponseEntity<>(booking, HttpStatus.OK);	
 	}
 
 	/**
@@ -145,11 +124,7 @@ public class BookingController {
 	 */
 	@PutMapping("/bookings/cancel")
 	public ResponseEntity<?> cancelBooking(@RequestParam @NotBlank String bookingNumber) {
-		try {
-			Booking booking = bookingService.cancelBooking(Long.parseLong(bookingNumber));
-			return new ResponseEntity<>("Reserva cancelada com Sucesso", HttpStatus.OK);
-		}catch (ErrorRegisterNotFoundInDataBase e) {
-			return new ResponseEntity<>("Não foi possível cancelar essa reserva.", HttpStatus.FAILED_DEPENDENCY);
-		}
+			JsonNode msg = bookingService.cancelBooking(Long.parseLong(bookingNumber));
+			return new ResponseEntity<>(msg, HttpStatus.OK);
 	}
 }

@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
@@ -37,7 +39,7 @@ public class Booking implements Serializable{
     /** Customer associated with a booking.*/
     @OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
     @JoinColumn(name = "id_customer")
-    private Customer customer;
+    private @Valid Customer customer;
 
     /** Hotel booking date.*/
     @Column(name = "booking_date")
@@ -54,7 +56,7 @@ public class Booking implements Serializable{
     /** Hotel associated with a booking.*/
     @OneToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
     @JoinColumn(name = "id_hotel")
-    private Hotel hotel;
+    private @Valid Hotel hotel;
 
     /** Booking type: Regular or Reward */
     @Column(name = "booking_type")

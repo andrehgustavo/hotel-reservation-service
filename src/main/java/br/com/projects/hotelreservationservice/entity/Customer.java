@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 /**
  * Class to represent a customer
@@ -28,13 +31,16 @@ public class Customer implements Serializable{
 
     /** Person/company name */
     @Column(name = "name")
+    @NotBlank
     private String name;
 
     /** Person/company telephone number */
     @Column(name = "phone_number")
+    @NotBlank
     private String phoneNumber;
 
     /** Person/company email */
+    @Email
     @Column(name = "email", unique = true)
     private String email;
 
@@ -44,6 +50,8 @@ public class Customer implements Serializable{
     
     /** CPF number */
     @Column(name = "cpf", unique = true)
+    @NotBlank
+    @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)" )
     private String cpf;
 
     /** Customer loyalty program's kind. */
@@ -82,10 +90,18 @@ public class Customer implements Serializable{
         this.address = new Address();
         this.loyalty = loyalty;
     }
-
+    
+    public Customer(String name, String phoneNumber, String email) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = new Address();
+        this.loyalty = LoyaltyProgram.REGULAR;
+    }
     // ################ Getters/Setters #################
     
    
+
 
     public Long getId() {
         return id;
