@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import br.com.projects.hotelreservationservice.entity.Hotel;
 import br.com.projects.hotelreservationservice.entity.LoyaltyProgram;
 import br.com.projects.hotelreservationservice.exception.ErrorRegisterNotFoundInDataBase;
+import br.com.projects.hotelreservationservice.exception.IncompleteHotelException;
 import br.com.projects.hotelreservationservice.repository.HotelRepository;
 import br.com.projects.hotelreservationservice.utils.Utils;
 
@@ -90,14 +91,21 @@ public class HotelServiceImpl implements HotelService{
 			}else if (total == cheapest){
 				theHotel = theHotel.getClassification() > hotel.getClassification() ? theHotel : hotel;
 			}
-		} 
+		} 			
 		return Utils.convertMsgToJson("cheapest", theHotel.getName());
 	}
 
 	@Override
 	public double calculateTotalPrice(LoyaltyProgram loyaltyProgram, int weekDays, int weekendsDays, Hotel hotel) {
-		return hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKDAYS") * weekDays +
-				hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKENDDAYS") * weekendsDays;
+		double result = 0.0;
+		try {
+			result = hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKDAYS") * weekDays +
+					hotel.getTableRate().get(loyaltyProgram.name()).getPricePerDays().get("WEEKENDDAYS") * weekendsDays;
+			
+		} catch (NullPointerException e) {
+			throw new IncompleteHotelException("O Hotel " + hotel.getName() + " de id " + hotel.getId() + " está sem os dados de valores/taxas.");
+		}
+		return result;
 	}
 
 	/**
