@@ -14,7 +14,7 @@ Persistence and endpoints Tests were implemented using Junit.
 ## Requirements
 For building and running the application you need:
 
-- [JDK 1.8](https://www.oracle.com/java/technologies/javase-downloads.html#JDK11)
+- [JDK 1.11](https://www.oracle.com/java/technologies/javase-downloads.html#JDK11)
 - [Maven 3](https://maven.apache.org/) (or later)
 - [Postgres 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/)
 
@@ -90,7 +90,8 @@ mvn spring-boot:run
     - [PUT] Update a customer ("hotel-reservation/api/v1/customers/")
     - [DELETE] Delete a customer ("hotel-reservation/api/v1/customers/{id}")
 
-### For detais of query params start the application and access the [link](http://localhost:8084/hotel-reservation/api/v1/swagger-ui.html/)
+#### For detais of query params start the application and access the http://localhost:8084/hotel-reservation/api/v1/swagger-ui.html
+
 ## Meta
 
 André Gustavo Barros – [@andrehgustavo](https://www.linkedin.com/in/andr%C3%A9-gustavo-barros-457b9a43/) – andreh_gustavo@hotmail.com
