@@ -2,9 +2,12 @@ package br.com.projects.hotelreservationservice.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projects.hotelreservationservice.entity.Address;
 import br.com.projects.hotelreservationservice.service.AddressService;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * Class to handle all Address related requests
@@ -23,6 +27,7 @@ import br.com.projects.hotelreservationservice.service.AddressService;
  * @author André Gustavo
  */
 @RestController
+@Validated
 @RequestMapping("/")
 public class AddressController {
     
@@ -33,7 +38,8 @@ public class AddressController {
 	 * Request a List of all system addresses
 	 * @return
 	 */
-    @GetMapping("/addresses")
+	@ApiOperation(value = "Request a List of all system addresses")
+    @GetMapping(value = "/addresses", produces="application/json")
 	public ResponseEntity<List<Address>> findAll() {
 		return new ResponseEntity<>(addressService.findAll(), HttpStatus.OK);
 	}
@@ -43,7 +49,8 @@ public class AddressController {
 	 * @param addressId the address id you want to retrieve.
 	 * @return
 	 */
-	@GetMapping("/addresses/{addressId}")
+	@ApiOperation(value = "Request a single system address")
+	@GetMapping(value = "/addresses/{addressId}", produces="application/json")
 	public ResponseEntity<?> getAddress(@PathVariable Long addressId) {
 		Address theAddress = addressService.findById(addressId);
 		return new ResponseEntity<>(theAddress, HttpStatus.OK);	
@@ -54,8 +61,9 @@ public class AddressController {
 	 * @param theAddress the address you want to save.
 	 * @return
 	 */
-	@PostMapping("/addresses")
-	public ResponseEntity<?> createAddress(@RequestBody Address theAddress) {
+	@ApiOperation(value = "Request to save an address in the system")
+	@PostMapping(value = "/addresses", produces="application/json", consumes="application/json")
+	public ResponseEntity<?> createAddress(@RequestBody @Valid Address theAddress) {
 		Address savedAddress = addressService.save(theAddress);
 		return new ResponseEntity<>(savedAddress.getId(), HttpStatus.CREATED);
 	}
@@ -65,7 +73,8 @@ public class AddressController {
 	 * @param theAddress the address you want to update.
 	 * @return
 	 */
-	@PutMapping("/addresses")
+	@ApiOperation(value = "Request to update an address in the system")
+	@PutMapping(value = "/addresses", produces="application/json", consumes="application/json")
 	public ResponseEntity<?> updateAddress(@RequestBody Address theAddress) {
 		addressService.update(theAddress);
 		return new ResponseEntity<>(theAddress, HttpStatus.OK);
@@ -76,7 +85,8 @@ public class AddressController {
 	 * @param addressId the address id you want to delete.
 	 * @return
 	 */
-	@DeleteMapping("/addresses/{addressId}")
+	@ApiOperation(value = "Request to delete an address in the system")
+	@DeleteMapping(value = "/addresses/{addressId}",  produces="application/json")
 	public ResponseEntity<?> deleteAddress(@PathVariable Long addressId) {
 		addressService.deleteById(addressId);
 		return new ResponseEntity<>("Address com id " + addressId + " deletado com sucesso.", HttpStatus.OK);

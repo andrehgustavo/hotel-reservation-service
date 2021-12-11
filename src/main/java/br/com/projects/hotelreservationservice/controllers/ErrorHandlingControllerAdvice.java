@@ -30,7 +30,7 @@ public class ErrorHandlingControllerAdvice {
     ValidationErrorResponse onConstraintValidationException(
         ConstraintViolationException e) {
       ValidationErrorResponse error = new ValidationErrorResponse();
-      for (ConstraintViolation violation : e.getConstraintViolations()) {
+      for (ConstraintViolation<?> violation : e.getConstraintViolations()) {
         error.getViolations().add(
           new Violation(violation.getPropertyPath().toString(), violation.getMessage()));
       }

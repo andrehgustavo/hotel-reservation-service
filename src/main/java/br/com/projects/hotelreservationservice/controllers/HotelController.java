@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projects.hotelreservationservice.entity.Hotel;
 import br.com.projects.hotelreservationservice.service.HotelService;
+import io.swagger.annotations.ApiOperation;
 
 /**
  * Class to handle all Hotel related requests
@@ -41,7 +42,8 @@ public class HotelController {
 	 * Request a List of all system hotels
 	 * @return
 	 */
-    @GetMapping("/hotels")
+	@ApiOperation(value = "Request a List of all system hotels")
+    @GetMapping(value = "/hotels", produces="application/json")
 	public ResponseEntity<List<Hotel>> findAll() {
 		return new ResponseEntity<>(hotelService.findAll(), HttpStatus.OK);
 	}
@@ -51,7 +53,8 @@ public class HotelController {
 	 * @param hotelId The hotel id id you want to retrieve.
 	 * @return
 	 */
-	@GetMapping("/hotels/{hotelId}")
+	@ApiOperation(value = "Request a single system hotel")
+	@GetMapping(value = "/hotels/{hotelId}", produces="application/json")
 	public ResponseEntity<?> getHotel(@PathVariable Long hotelId) {
 		Hotel theHotel = hotelService.findById(hotelId);
 		return new ResponseEntity<>(theHotel, HttpStatus.OK);
@@ -63,7 +66,8 @@ public class HotelController {
 	 * @param theHotel the hotel you want to save.
 	 * @return
 	 */
-	@PostMapping("/hotels")
+	@ApiOperation(value = "Request to save a hotel in the system")
+	@PostMapping(value = "/hotels", produces="application/json", consumes="application/json")
 	public ResponseEntity<?> createHotel(@RequestBody Hotel theHotel) {
 		Hotel savedHotel = hotelService.save(theHotel);
 		return new ResponseEntity<>(savedHotel.getId(), HttpStatus.CREATED);
@@ -74,7 +78,8 @@ public class HotelController {
 	 * @param theHotel the hotel you want to update.
 	 * @return
 	 */
-	@PutMapping("/hotels")
+	@ApiOperation(value = "Request to update a hotel in the system")
+	@PutMapping(value = "/hotels", produces="application/json", consumes="application/json")
 	public ResponseEntity<?> updateHotel(@RequestBody Hotel theHotel) {
 		hotelService.update(theHotel);
 		return new ResponseEntity<>(theHotel, HttpStatus.OK);
@@ -85,13 +90,21 @@ public class HotelController {
 	 * @param hotelId the hotel id you want to delete.
 	 * @return
 	 */
-	@DeleteMapping("/hotels/{hotelId}")
+	@ApiOperation(value = "Request to delete a hotel in the system")
+	@DeleteMapping(value = "/hotels/{hotelId}", produces="application/json")
 	public ResponseEntity<?> deleteHotel(@PathVariable Long hotelId) {
 		hotelService.deleteById(hotelId);
 		return new ResponseEntity<>("Hotel com id " + hotelId + " deletado com sucesso.", HttpStatus.OK);
 	}
 
-	@GetMapping("/cheapest")
+	/**
+	 * Request to retrieve the cheapest hotel in a period
+	 * @param type Customer type
+	 * @param dates a List of dates
+	 * @return the Cheapest hotel
+	 */
+	@ApiOperation(value = "Request to retrieve the cheapest hotel in a period")
+	@GetMapping(value = "/cheapest", produces="application/json")
 	public ResponseEntity<?> getCheapest(@RequestParam @NotBlank String type, @RequestParam @NotEmpty List<String> dates) {
 			JsonNode theCheapest = hotelService.getCheapest(type, dates);
 			return new ResponseEntity<>(theCheapest, HttpStatus.OK);

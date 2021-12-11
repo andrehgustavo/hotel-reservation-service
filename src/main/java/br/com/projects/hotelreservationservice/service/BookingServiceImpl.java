@@ -102,8 +102,7 @@ public class BookingServiceImpl implements BookingService{
 		Booking booking = new Booking(customer, hotel, checkin, checkout, loyaltyProgram, remarks, bookingNumber, price);
 		booking = save(booking);
 		try {
-			//FIXME: Tirar o comentário
-			//emailService.sendInformationMail(CONFIRMED, booking);			
+			emailService.sendInformationMail(CONFIRMED, booking);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
