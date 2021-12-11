@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projects.hotelreservationservice.entity.Customer;
 import br.com.projects.hotelreservationservice.service.CustomerService;
+import br.com.projects.hotelreservationservice.utils.Utils;
 import io.swagger.annotations.ApiOperation;
 
 /**
@@ -65,6 +66,6 @@ public class CustomerController {
 	@DeleteMapping(value = "/customers/{customerId}",  produces="application/json")
 	public ResponseEntity<?> deleteCustomer(@PathVariable Long customerId) {
 		customerService.deleteById(customerId);
-		return new ResponseEntity<>("Cliente com id " + customerId + " deletado com sucesso.", HttpStatus.OK);
+		return new ResponseEntity<>(Utils.convertMsgToJson("message","Cliente com id " + customerId + " deletado com sucesso."), HttpStatus.OK);
 	}
 }

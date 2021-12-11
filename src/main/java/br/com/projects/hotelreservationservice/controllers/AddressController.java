@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projects.hotelreservationservice.entity.Address;
 import br.com.projects.hotelreservationservice.service.AddressService;
+import br.com.projects.hotelreservationservice.utils.Utils;
 import io.swagger.annotations.ApiOperation;
 
 /**
@@ -89,6 +90,6 @@ public class AddressController {
 	@DeleteMapping(value = "/addresses/{addressId}",  produces="application/json")
 	public ResponseEntity<?> deleteAddress(@PathVariable Long addressId) {
 		addressService.deleteById(addressId);
-		return new ResponseEntity<>("Address com id " + addressId + " deletado com sucesso.", HttpStatus.OK);
+		return new ResponseEntity<>(Utils.convertMsgToJson("message", "Endereço com id " + addressId + " deletado com sucesso."), HttpStatus.OK);
 	}
 }

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projects.hotelreservationservice.entity.Hotel;
 import br.com.projects.hotelreservationservice.service.HotelService;
+import br.com.projects.hotelreservationservice.utils.Utils;
 import io.swagger.annotations.ApiOperation;
 
 /**
@@ -94,7 +95,7 @@ public class HotelController {
 	@DeleteMapping(value = "/hotels/{hotelId}", produces="application/json")
 	public ResponseEntity<?> deleteHotel(@PathVariable Long hotelId) {
 		hotelService.deleteById(hotelId);
-		return new ResponseEntity<>("Hotel com id " + hotelId + " deletado com sucesso.", HttpStatus.OK);
+		return new ResponseEntity<>(Utils.convertMsgToJson("message","Hotel com id " + hotelId + " deletado com sucesso."), HttpStatus.OK);
 	}
 
 	/**
