@@ -80,6 +80,40 @@ public class Booking implements Serializable{
     // ################ Constructors #################
     public Booking(){
     }
+    public Booking(Long id){
+        this.id = id;
+    }
+
+    
+    public Booking(Long id, @Valid Customer customer, Timestamp bookingDate, Date checkin, Date checkout,
+            @Valid Hotel hotel, LoyaltyProgram type, String remarks, Long number, Double price, Boolean active) {
+        this.id = id;
+        this.customer = customer;
+        this.bookingDate = bookingDate;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.hotel = hotel;
+        this.type = type;
+        this.remarks = remarks;
+        this.number = number;
+        this.price = price;
+        this.active = active;
+    }
+
+    public Booking(@Valid Customer customer, Timestamp bookingDate, Date checkin, Date checkout,
+            @Valid Hotel hotel, LoyaltyProgram type, String remarks, Long number, Double price, Boolean active) {
+        this.customer = customer;
+        this.bookingDate = bookingDate;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.hotel = hotel;
+        this.type = type;
+        this.remarks = remarks;
+        this.number = number;
+        this.price = price;
+        this.active = active;
+    }
+
 
     public Booking(Customer customer, Hotel hotel, Date checkout, Date checkin, LoyaltyProgram type, String remarks) {
         this.customer = customer;

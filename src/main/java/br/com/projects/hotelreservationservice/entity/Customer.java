@@ -68,6 +68,17 @@ public class Customer implements Serializable{
 
     }
 
+    public Customer(Long id, String name, String phoneNumber, String email, Address address, String cpf,
+            LoyaltyProgram loyalty) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.cpf = cpf;
+        this.loyalty = loyalty;
+    }
+
     public Customer(String name, String phoneNumber, String email, Address address, String cpf,
             LoyaltyProgram loyalty) {
         this.name = name;
