@@ -90,7 +90,7 @@ mvn spring-boot:run
     - [PUT] Update a customer ("hotel-reservation/api/v1/customers/")
     - [DELETE] Delete a customer ("hotel-reservation/api/v1/customers/{id}")
 
-//TODO: Terminar endpoints
+### For detais of query params start the application and access the [link](http://localhost:8084/hotel-reservation/api/v1/swagger-ui.html/)
 ## Meta
 
 André Gustavo Barros – [@andrehgustavo](https://www.linkedin.com/in/andr%C3%A9-gustavo-barros-457b9a43/) – andreh_gustavo@hotmail.com
