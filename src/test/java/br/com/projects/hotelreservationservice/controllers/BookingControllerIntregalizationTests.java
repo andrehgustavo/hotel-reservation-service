@@ -57,7 +57,7 @@ public class BookingControllerIntregalizationTests {
 		
 		Booking[] bookings = res.getBody();
 		// Local
-		assertEquals(16, bookings.length);
+		//assertEquals(16, bookings.length);
 		//Remoto (GITHUB)
 		assertEquals(2, bookings.length);
 		assertEquals(200, res.getStatusCodeValue());
@@ -142,7 +142,7 @@ public class BookingControllerIntregalizationTests {
 
 	@Test 
     void testDeleteBookingByIdReturn200() throws URISyntaxException{
-		final String url = "http://localhost:" + port + "/hotel-reservation/api/v1/bookings/4";
+		final String url = "http://localhost:" + port + "/hotel-reservation/api/v1/bookings/1";
 
 		URI uri = new URI(url);
 
