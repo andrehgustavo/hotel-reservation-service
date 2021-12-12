@@ -31,7 +31,7 @@ git clone https://github.com/andrehgustavo/hotel-reservation-service
 Option 1 - In PGAdmin, create a database called 'hotel-reservation-db'. Then you must open src/main/resources/application.properties file and change the spring datasource username and password as per your PostgreSQL installation. So, you can start the springbootAplicattion, and this will create all tables necessary for the
 databank. Nextly, run the second script, 'populate_db.sql' to populate the Database.
 
-Option 2 - Open the psql command-line tool and run 'db_create.sql' file found in the src\main\resources\static directory in your Postgres database manager to create the database, this script creates all tables. Then run the second script, 'populate_db.sql' to populate the Database. Then, open src/main/resources/application.properties file and change the spring datasource username and password as per your PostgreSQL installation.
+Option 2 - Open the psql command-line tool and run 'createDB.sql' file found in the './Scripts/createDB.sql' directory in your Postgres database manager to create the database, this script creates all tables. Then run the second script, './Scripts/populate_db.sql' to populate the Database. Then, open src/main/resources/application.properties file and change the spring datasource username and password as per your PostgreSQL installation.
 
 ## Usage example
 

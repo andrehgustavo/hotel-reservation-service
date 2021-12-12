@@ -162,6 +162,7 @@ VALUES(2, 'Miami', 'Estados Unidos', 'Comercial', 'New Horizon', 103, 'FL', '206
 INSERT INTO public.address
 (id_address, city, country, description, neighborhood, "number", state, street)
 VALUES(3, 'Miami', 'Estados Unidos', 'Comercial', 'Hope', 146, 'FL', 'Biscayne Blvd');
+SELECT setval('address_id_address_seq', (SELECT max(a.id_address) FROM public.address a));
 
 
 INSERT INTO public.hotel
@@ -173,6 +174,7 @@ VALUES(3, 4, '000.000-0001-2', 'contato@bridgewood.com', 'Bridgewood', '55 84 99
 INSERT INTO public.hotel
 (id_hotel, classification, cnpj, email, "name", phone_number, id_address)
 VALUES(5, 5, '000.000-0001-3', 'contato@ridgewood.com', 'Ridgewood', '55 84 99998-55542', 3);
+SELECT setval('hotel_id_hotel_seq', (SELECT max(h.id_hotel) FROM public.hotel h));
 
 INSERT INTO public.rate
 (id_rate, description, price_type)
@@ -192,6 +194,7 @@ VALUES(5, 'Day type price for Regular customers', 'REGULAR');
 INSERT INTO public.rate
 (id_rate, description, price_type)
 VALUES(6, 'Day type price for Reward customers', 'REWARD');
+SELECT setval('rate_id_rate_seq', (SELECT max(r.id_rate) FROM public.rate r));
 
 INSERT INTO public.price_per_days
 (id_rate, price, "name")
@@ -272,6 +275,7 @@ VALUES(19, '000.000.000-75', 'Marcelo4@email.com', 1, 'Marcelo4', '84888554423',
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
 VALUES(20, '000.000.000-76', 'Marcelo5@email.com', 1, 'Marcelo5', '84888554423', 1);
+SELECT setval('customer_id_customer_seq', (SELECT max(c.id_customer) FROM public.customer c));
 
 INSERT INTO public.booking
 (id_booking, checkin, checkout, booking_remarks, booking_type, id_customer, id_hotel, booking_number, booking_date, booking_price, active)
@@ -282,3 +286,4 @@ VALUES(2, '2021-11-28', '2021-11-26', 'Teste teste', 0, 4, 1, 1638240109789, '20
 INSERT INTO public.booking
 (id_booking, checkin, checkout, booking_remarks, booking_type, id_customer, id_hotel, booking_number, booking_date, booking_price, active)
 VALUES(3, '2021-11-28', '2021-11-26', 'Teste teste', 0, 4, 1, 1638243969183, '2021-11-30 00:46:09.215', 290.0, true);
+SELECT setval('booking_id_booking_seq', (SELECT max(b.id_booking) FROM public.booking b));
