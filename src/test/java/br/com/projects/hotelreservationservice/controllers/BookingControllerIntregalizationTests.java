@@ -25,12 +25,13 @@ public class BookingControllerIntregalizationTests {
 
 
     @Test 
-    void testGetAll() {
+    void testGetAllReturn200() {
 		ResponseEntity<Booking[]> res = testRestTemplate.getForEntity("http://localhost:" + port + "/hotel-reservation/api/v1/bookings", Booking[].class);
 		
 		Booking[] bookings = res.getBody();
 		
-		assertEquals(16, bookings.length);
+		assertEquals(2, bookings.length);
+		assertEquals(200, res.getStatusCodeValue());
 	}
 
 }
