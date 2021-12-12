@@ -151,7 +151,7 @@ public class BookingController {
 	 * @return
 	 */
 	@ApiOperation(value = "Request to cancel a booking in the system")
-	@PutMapping(value = "/bookings/cancel",  produces="application/json")
+	@PostMapping(value = "/bookings/cancel",  produces="application/json")
 	public ResponseEntity<?> cancelBooking(@RequestParam @NotBlank String bookingNumber) {
 			JsonNode msg = bookingService.cancelBooking(Long.parseLong(bookingNumber));
 			return new ResponseEntity<>(msg, HttpStatus.OK);
