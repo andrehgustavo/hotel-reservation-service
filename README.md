@@ -3,6 +3,7 @@
 
 [![Spring-Boot Version](https://github.com/andrehgustavo/hotel-reservation-service/blob/main/src/main/resources/static/img/spring-boot-sm.png)][spring-boot-url]
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+![GitHub Workflow Status](https://github.com/andrehgustavo/hotel-reservation-service/actions/workflows/maven.yml/badge.svg)
 
 This project is a RestFul application, in which it is possible to manage an online reservation system of a network of fictional hotels in Miami. The network comprises three hotels: Lakewood, Bridgewood and Ridgewood. Each hotel has different rates for a weekday or weekend, including specific rates for loyalty program participants. Additionally, each hotel has a rating, indicating the excellence of the service.
 
