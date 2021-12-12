@@ -259,7 +259,7 @@ INSERT INTO public.customer
 VALUES(2, '09206027468', 'chico@email.com', 1, 'Chico', '84888554423', 1);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(4, '06792330400', 'andre@email.com', 1, 'André', '84888554423', 1);
+VALUES(4, '06792330400', 'andreh_gustavo@hotmail.com', 1, 'Andre', '84888554423', 1);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
 VALUES(15, '075.604.100-73', 'Marcelo@email.com', 1, 'Marcelo', '84888554423', 2);
