@@ -42,6 +42,24 @@ CREATE TABLE IF NOT EXISTS public.rate (
 	CONSTRAINT rate_pkey PRIMARY KEY (id_rate)
 );
 
+-- public.price_per_days definition
+
+-- Drop table
+
+-- DROP TABLE public.price_per_days;
+
+CREATE TABLE IF NOT EXISTS public.price_per_days (
+	id_rate int8 NOT NULL,
+	price float8 NULL,
+	"name" varchar(255) NOT NULL,
+	CONSTRAINT price_per_days_pkey PRIMARY KEY (id_rate, name)
+);
+
+
+-- public.price_per_days foreign keys
+
+ALTER TABLE public.price_per_days ADD CONSTRAINT fkeoboko90jp4237hobhkkthqy3 FOREIGN KEY (id_rate) REFERENCES public.rate(id_rate);
+
 -- public.hotel definition
 
 -- Drop table
@@ -133,6 +151,8 @@ CREATE TABLE IF NOT EXISTS public.hotel_table_rate (
 ALTER TABLE public.hotel_table_rate ADD CONSTRAINT fkf4l9y0rkt8mor9d016q5qq0s2 FOREIGN KEY (id_hotel) REFERENCES public.hotel(id_hotel);
 ALTER TABLE public.hotel_table_rate ADD CONSTRAINT fkmocidry2b63sxcm5p88yg3lp4 FOREIGN KEY (id_rate) REFERENCES public.rate(id_rate);
 
+
+-- INSERTS
 INSERT INTO public.address
 (id_address, city, country, description, neighborhood, "number", state, street)
 VALUES(1, 'Miami', 'Estados Unidos', 'Comercial', 'Sunset Beach', 307, 'FL', 'NE 1st St');
@@ -153,6 +173,64 @@ VALUES(3, 4, '000.000-0001-2', 'contato@bridgewood.com', 'Bridgewood', '55 84 99
 INSERT INTO public.hotel
 (id_hotel, classification, cnpj, email, "name", phone_number, id_address)
 VALUES(5, 5, '000.000-0001-3', 'contato@ridgewood.com', 'Ridgewood', '55 84 99998-55542', 3);
+
+INSERT INTO public.rate
+(id_rate, description, price_type)
+VALUES(1, 'Day type price for Regular customers', 'REGULAR');
+INSERT INTO public.rate
+(id_rate, description, price_type)
+VALUES(2, 'Day type price for Reward customers', 'REWARD');
+INSERT INTO public.rate
+(id_rate, description, price_type)
+VALUES(3, 'Day type price for Regular customers', 'REGULAR');
+INSERT INTO public.rate
+(id_rate, description, price_type)
+VALUES(4, 'Day type price for Reward customers', 'REWARD');
+INSERT INTO public.rate
+(id_rate, description, price_type)
+VALUES(5, 'Day type price for Regular customers', 'REGULAR');
+INSERT INTO public.rate
+(id_rate, description, price_type)
+VALUES(6, 'Day type price for Reward customers', 'REWARD');
+
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(1, 110.0, 'WEEKDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(1, 90.0, 'WEEKENDDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(2, 80.0, 'WEEKDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(2, 80.0, 'WEEKENDDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(3, 160.0, 'WEEKDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(3, 60.0, 'WEEKENDDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(4, 110.0, 'WEEKDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(4, 50.0, 'WEEKENDDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(5, 220.0, 'WEEKDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(5, 150.0, 'WEEKENDDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(6, 100.0, 'WEEKDAYS');
+INSERT INTO public.price_per_days
+(id_rate, price, "name")
+VALUES(6, 40.0, 'WEEKENDDAYS');
+
+
 
 INSERT INTO public.hotel_table_rate
 (id_hotel, id_rate)
