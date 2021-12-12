@@ -288,5 +288,5 @@ INSERT INTO public.booking
 VALUES(3, '2021-11-28', '2021-11-26', 'Teste teste', 0, 4, 1, 1638243969183, '2021-11-30 00:46:09.215', 290.0, true);
 INSERT INTO public.booking
 (id_booking, active, booking_date, checkin, checkout, booking_number, booking_price, booking_remarks, booking_type, id_customer, id_hotel)
-VALUES(4, true, '2021-12-12 16:04:16.334', '2021-11-28', '2021-11-26', 1639335856295, 290.0, 'Cama extra', 0, 5, 1);
+VALUES(4, true, '2021-12-12 16:04:16.334', '2021-11-28', '2021-11-26', 1639335856295, 290.0, 'Cama extra', 0, 20, 1);
 SELECT setval('booking_id_booking_seq', (SELECT max(b.id_booking) FROM public.booking b));
