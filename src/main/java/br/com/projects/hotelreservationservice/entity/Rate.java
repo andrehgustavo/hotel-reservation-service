@@ -50,6 +50,17 @@ public class Rate implements Serializable{
 
     }
 
+    
+
+    public Rate(Long id, String description, String priceType, Map<String, Double> pricePerDays) {
+        this.id = id;
+        this.description = description;
+        this.priceType = priceType;
+        this.pricePerDays = pricePerDays;
+    }
+
+
+
     public Rate(String description, String priceType, Map<String, Double> pricePerDays) {
         this.description = description;
         this.priceType = priceType;

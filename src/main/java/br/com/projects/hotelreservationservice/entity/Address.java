@@ -60,6 +60,19 @@ public class Address implements Serializable{
     }
 
     
+    public Address(Long id, String description, String street, int number, String neighborhood, String city,
+            String state, String country) {
+        this.id = id;
+        this.description = description;
+        this.street = street;
+        this.number = number;
+        this.neighborhood = neighborhood;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+    }
+
+
     public Address(String description, String street, int number, String neighborhood, String city, String state,
             String country) {
         this.description = description;

@@ -68,6 +68,20 @@ public class Hotel implements Serializable{
     public Hotel(){
     }
 
+    
+    public Hotel(Long id, String name, String phoneNumber, String email, Address address, String cnpj,
+            int classification, Map<String, Rate> tableRate) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.cnpj = cnpj;
+        this.classification = classification;
+        this.tableRate = tableRate;
+    }
+
+
     public Hotel(String name, String phoneNumber, String email, Address address, String cnpj, int classification,
             Map<String, Rate> tableRate) {
         this.name = name;
