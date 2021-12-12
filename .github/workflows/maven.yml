@@ -36,10 +36,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
           java-version: '11.0.4' 
+    - name: Grant execute permission for docker_init
+        run: chmod +x ./docker_init.sh
+    - name: Execute docker_init
+        run: ./docker_init.sh
+
     - name: Build with Maven
       run: |
-          docker cp $(pwd)/hotel-reservation-service/Scripts/createDB.sql db:/script.sql
-          docker exec db /bin/bash -c 'mysql -uroot -proot < script.sql'
-          docker cp $(pwd)/hotel-reservation-service/Scripts/Populate.sql db:/script2.sql
-          docker exec db /bin/bash -c 'mysql -uroot -proot < script2.sql'
           mvn package --file hotel-reservation-service/pom.xml

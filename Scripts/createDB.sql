@@ -2,7 +2,7 @@
 
 -- DROP DATABASE "hotel-reservation-db";
 
-CREATE DATABASE "hotel-teste-db"
+CREATE DATABASE "hotel-reservation-db"
     WITH 
     OWNER = postgres
     ENCODING = 'UTF8'
