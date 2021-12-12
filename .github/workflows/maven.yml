@@ -43,4 +43,4 @@ jobs:
 
     - name: Build with Maven
       run: |
-          mvn package --file hotel-reservation-service/pom.xml
+          mvn package
