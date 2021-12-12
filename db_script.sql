@@ -131,7 +131,7 @@ CREATE TABLE IF NOT EXISTS public.booking (
 
 -- public.booking foreign keys
 ALTER TABLE public.booking ADD CONSTRAINT fkpik2mrag1cnn0tqf6pem6iuyc FOREIGN KEY (id_hotel) REFERENCES public.hotel(id_hotel);
-ALTER TABLE public.booking ADD CONSTRAINT fksfkmk4sahyegxnjceqmpuy407 FOREIGN KEY (id_customer) REFERENCES public.customer(id_hotel);
+ALTER TABLE public.booking ADD CONSTRAINT fksfkmk4sahyegxnjceqmpuy407 FOREIGN KEY (id_customer) REFERENCES public.customer(id_customer);
 
 -- public.hotel_table_rate definition
 
