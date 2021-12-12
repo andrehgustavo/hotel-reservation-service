@@ -6,7 +6,7 @@ DB_USER=${POSTGRES_USER:=postgres}
 DB_PASSWORD="${POSTGRES_PASSWORD:=postgres}"
 DB_NAME="${POSTGRES_DB:=hotel-reservation-db}"
 DB_PORT="${POSTGRES_PORT:=5432}"
-DB_SCRIPT=$(<db_script.sql)
+DB_SCRIPT=$(<./Scripts/db_script.sql)
 
 # Allow to skip Docker if a dockerized Postgres database is already running
 if [[ -z "${SKIP_DOCKER}" ]]
