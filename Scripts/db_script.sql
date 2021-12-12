@@ -155,25 +155,49 @@ ALTER TABLE public.hotel_table_rate ADD CONSTRAINT fkmocidry2b63sxcm5p88yg3lp4 F
 -- INSERTS
 INSERT INTO public.address
 (id_address, city, country, description, neighborhood, "number", state, street)
-VALUES(1, 'Miami', 'Estados Unidos', 'Comercial', 'Sunset Beach', 307, 'FL', 'NE 1st St');
+VALUES(5, 'Miami', 'Estados Unidos', 'Comercial', 'Sunset Beach', 307, 'FL', 'NE 1st St');
 INSERT INTO public.address
 (id_address, city, country, description, neighborhood, "number", state, street)
-VALUES(2, 'Miami', 'Estados Unidos', 'Comercial', 'New Horizon', 103, 'FL', '206 St');
+VALUES(3, 'Miami', 'Estados Unidos', 'Comercial', 'New Horizon', 103, 'FL', '206 St');
 INSERT INTO public.address
 (id_address, city, country, description, neighborhood, "number", state, street)
-VALUES(3, 'Miami', 'Estados Unidos', 'Comercial', 'Hope', 146, 'FL', 'Biscayne Blvd');
-SELECT setval('address_id_address_seq', (SELECT max(a.id_address) FROM public.address a));
+VALUES(4, 'Miami', 'Estados Unidos', 'Comercial', 'Hope', 146, 'FL', 'Biscayne Blvd');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(1, 'Mossoró', 'Brasil', 'Residencial', 'Lagoa Nova', 2034, 'RN', 'Rua tal');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(9, 'Mossoró', 'Brasil', 'Residencial', 'Lagoa Nova', 2034, 'RN', 'Rua tal');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(12, 'Orlando', 'Estados Unidos', 'Residencial', 'Mall', 26, 'FL', '45 street');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(21, 'Mossoró', 'Brasil', 'Residencial', 'Lagoa Nova', 2034, 'RN', 'Rua tal');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(23, 'Mossoró', 'Brasil', 'Residencial', 'Lagoa Nova', 2034, 'RN', 'Rua tal');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(26, 'Mossoró', 'Brasil', 'Residencial', 'Lagoa Nova', 2034, 'RN', 'Rua tal');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(27, 'Mossoró', 'Brasil', 'Residencial', 'Lagoa Nova', 2034, 'RN', 'Rua teste');
+INSERT INTO public.address
+(id_address, city, country, description, neighborhood, "number", state, street)
+VALUES(10, 'Orlando', 'EUA', 'Comercial', 'Neighbor', 56, 'CA', 'Rua do Hotel');
 
 
+
 INSERT INTO public.hotel
 (id_hotel, classification, cnpj, email, "name", phone_number, id_address)
-VALUES(1, 3, '000.000-0001-1', 'contato@lakewood.com', 'Lakewood', '55 84 99998-55540', 1);
+VALUES(1, 3, '000.000-0001-1', 'contato@lakewood.com', 'Lakewood', '55 84 99998-55540', 3);
 INSERT INTO public.hotel
 (id_hotel, classification, cnpj, email, "name", phone_number, id_address)
-VALUES(3, 4, '000.000-0001-2', 'contato@bridgewood.com', 'Bridgewood', '55 84 99998-55540', 2);
+VALUES(3, 4, '000.000-0001-2', 'contato@bridgewood.com', 'Bridgewood', '55 84 99998-55540', 4);
 INSERT INTO public.hotel
 (id_hotel, classification, cnpj, email, "name", phone_number, id_address)
-VALUES(5, 5, '000.000-0001-3', 'contato@ridgewood.com', 'Ridgewood', '55 84 99998-55542', 3);
+VALUES(5, 5, '000.000-0001-3', 'contato@ridgewood.com', 'Ridgewood', '55 84 99998-55542', 5);
 SELECT setval('hotel_id_hotel_seq', (SELECT max(h.id_hotel) FROM public.hotel h));
 
 INSERT INTO public.rate
