@@ -9,7 +9,6 @@ import java.sql.Timestamp;
 import java.util.Hashtable;
 import java.util.Map;
 
-import org.assertj.core.api.Assertions;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
@@ -44,9 +43,6 @@ public class BookingControllerIntregalizationTests {
 	
 	@Autowired
 	private TestRestTemplate testRestTemplate;
-
-	private Long tempBookingNumber;
-
 
     @Test 
     void testGetAllBookingsReturn200() {
@@ -156,8 +152,8 @@ public class BookingControllerIntregalizationTests {
 		final String url = "http://localhost:" + port + "/hotel-reservation/api/v1/bookings";
 		
 		LinkedMultiValueMap<String, String> requestParams = new LinkedMultiValueMap<>();
-        requestParams.add("name", "Andre");
-        requestParams.add("phoneNumber", "8499999999");
+        requestParams.add("name", "Andre Gustavo");
+        requestParams.add("phoneNumber", "84999278557");
         requestParams.add("email", "andreh_gustavo@hotmail.com");
         requestParams.add("period", "28/11/2021, 26/11/2021, 27/11/2021");
         requestParams.add("hotel", "Lakewood");
@@ -231,8 +227,8 @@ public class BookingControllerIntregalizationTests {
 	private JSONObject getJSONBooking() throws JSONException {
 		JSONObject json = new JSONObject();
 
-		json.put("name", "Andre");
-        json.put("phoneNumber", "8499999999");
+		json.put("name", "Andre Gustavo");
+        json.put("phoneNumber", "84999278557");
         json.put("email", "andreh_gustavo@hotmail.com");
         json.put("period", "28/11/2021, 26/11/2021, 27/11/2021");
         json.put("hotel", "Lakewood");

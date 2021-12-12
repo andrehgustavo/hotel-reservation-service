@@ -259,22 +259,25 @@ INSERT INTO public.customer
 VALUES(2, '09206027468', 'chico@email.com', 1, 'Chico', '84888554423', 1);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(4, '06792330400', 'andreh_gustavo@hotmail.com', 1, 'Andre', '84888554423', 1);
+VALUES(5, '000.000.000-01', 'andreh_gustavo@hotmail.com', 0, 'Andre Gustavo', '84999278557', 3);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(15, '075.604.100-73', 'Marcelo@email.com', 1, 'Marcelo', '84888554423', 2);
+VALUES(15, '075.604.100-73', 'Marcelo@email.com', 1, 'Marcelo', '84888554423', 21);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(17, '000.000.000-73', 'Marcelo1@email.com', 1, 'Marcelo1', '84888554423', 2);
+VALUES(17, '000.000.000-73', 'Marcelo1@email.com', 1, 'Marcelo1', '84888554423', 23);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(18, '000.000.000-74', 'Marcelo3@email.com', 1, 'Marcelo3', '84888554423', 3);
+VALUES(18, '000.000.000-74', 'Marcelo3@email.com', 1, 'Marcelo3', '84888554423', 26);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(19, '000.000.000-75', 'Marcelo4@email.com', 1, 'Marcelo4', '84888554423', 3);
+VALUES(19, '000.000.000-75', 'Marcelo4@email.com', 1, 'Marcelo4', '84888554423', 27);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(20, '000.000.000-76', 'Marcelo5@email.com', 1, 'Marcelo5', '84888554423', 1);
+VALUES(20, '000.000.000-76', 'Marcelo5@email.com', 1, 'Marcelo5', '84888554423', 27);
+INSERT INTO public.customer
+(id_customer, cpf, email, loyalty, "name", phone_number, id_address)
+VALUES(4, '000.000.000-17', 'andre@email.com', 0, 'Pedro', '84888554423', 1);
 SELECT setval('customer_id_customer_seq', (SELECT max(c.id_customer) FROM public.customer c));
 
 INSERT INTO public.booking
