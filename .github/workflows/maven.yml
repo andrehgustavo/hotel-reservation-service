@@ -14,6 +14,22 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      
+     # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -23,4 +39,9 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: |
+          docker cp $(pwd)/hotel-reservation-service/Scripts/createDB.sql db:/script.sql
+          docker exec db /bin/bash -c 'mysql -uroot -proot < script.sql'
+          docker cp $(pwd)/hotel-reservation-service/Scripts/Populate.sql db:/script2.sql
+          docker exec db /bin/bash -c 'mysql -uroot -proot < script2.sql'
+          mvn package --file hotel-reservation-service/pom.xml
