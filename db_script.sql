@@ -265,13 +265,13 @@ INSERT INTO public.customer
 VALUES(17, '000.000.000-73', 'Marcelo1@email.com', 1, 'Marcelo1', '84888554423', 2);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(18, '000.000.000-74', 'Marcelo3@email.com', 1, 'Marcelo3', '84888554423', 26);
+VALUES(18, '000.000.000-74', 'Marcelo3@email.com', 1, 'Marcelo3', '84888554423', 3);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(19, '000.000.000-75', 'Marcelo4@email.com', 1, 'Marcelo4', '84888554423', 27);
+VALUES(19, '000.000.000-75', 'Marcelo4@email.com', 1, 'Marcelo4', '84888554423', 3);
 INSERT INTO public.customer
 (id_customer, cpf, email, loyalty, "name", phone_number, id_address)
-VALUES(20, '000.000.000-76', 'Marcelo5@email.com', 1, 'Marcelo5', '84888554423', 27);
+VALUES(20, '000.000.000-76', 'Marcelo5@email.com', 1, 'Marcelo5', '84888554423', 1);
 
 INSERT INTO public.booking
 (id_booking, checkin, checkout, booking_remarks, booking_type, id_customer, id_hotel, booking_number, booking_date, booking_price, active)
