@@ -55,7 +55,7 @@ public class BookingControllerIntregalizationTests {
 		// Local
 		//assertEquals(16, bookings.length);
 		//Remoto (GITHUB)
-		assertEquals(2, bookings.length);
+		assertEquals(3, bookings.length);
 		assertEquals(200, res.getStatusCodeValue());
 	}
 
