@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeConstants;
@@ -46,10 +47,12 @@ public class Booking implements Serializable{
 
     /** Hotel check-in date.*/
     @Column(name = "checkin")
+    @NotNull
     private Date checkin;
 
     /** Hotel check-out date.*/
     @Column(name = "checkout")
+    @NotNull
     private Date checkout;
 
     /** Hotel associated with a booking.*/
@@ -342,7 +345,6 @@ public class Booking implements Serializable{
         DateTime tempDate = new DateTime(startDt.getMillis());
         while(tempDate.compareTo(endDt) <=0 ){
             if(tempDate.getDayOfWeek() !=  DateTimeConstants.SATURDAY && tempDate.getDayOfWeek() !=  DateTimeConstants.SUNDAY){
-                System.out.println(""+tempDate);
                 ++result[0];
             }else{
                 ++result[1];

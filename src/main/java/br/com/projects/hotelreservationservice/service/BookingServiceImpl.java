@@ -1,5 +1,6 @@
 package br.com.projects.hotelreservationservice.service;
 
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -53,9 +54,18 @@ public class BookingServiceImpl implements BookingService{
 
 	@Override
 	public Booking save(Booking theBooking) {
-
 		theBooking.setId(0L);
-		return bookingRepository.save(theBooking);		
+
+		//Init a new Booking
+		Long bookingNumber = getValidBookingNumber();
+		int days[] = Booking.getWeekDays(theBooking.getCheckin(), theBooking.getCheckout());
+		double price = hotelService.calculateTotalPrice(theBooking.getType(), days[0], days[1], theBooking.getHotel());
+		theBooking.setNumber(bookingNumber);
+		theBooking.setPrice(price);
+		theBooking.setActive(true);
+		theBooking.setBookingDate(new Timestamp(System.currentTimeMillis()));
+
+		return bookingRepository.save(theBooking);	
 	}
 
 	@Override
