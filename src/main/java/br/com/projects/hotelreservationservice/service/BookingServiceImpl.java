@@ -57,13 +57,19 @@ public class BookingServiceImpl implements BookingService{
 		theBooking.setId(0L);
 
 		//Init a new Booking
-		Long bookingNumber = getValidBookingNumber();
-		int days[] = Booking.getWeekDays(theBooking.getCheckin(), theBooking.getCheckout());
-		double price = hotelService.calculateTotalPrice(theBooking.getType(), days[0], days[1], theBooking.getHotel());
-		theBooking.setNumber(bookingNumber);
-		theBooking.setPrice(price);
+		if(theBooking.getNumber() == null){
+			Long bookingNumber = getValidBookingNumber();
+			theBooking.setNumber(bookingNumber);
+		}
+		if(theBooking.getPrice() == null){
+			int days[] = Booking.getWeekDays(theBooking.getCheckin(), theBooking.getCheckout());
+			double price = hotelService.calculateTotalPrice(theBooking.getType(), days[0], days[1], theBooking.getHotel());
+			theBooking.setPrice(price);
+		}
+		if(theBooking.getBookingDate() == null){
+			theBooking.setBookingDate(new Timestamp(System.currentTimeMillis()));
+		} 
 		theBooking.setActive(true);
-		theBooking.setBookingDate(new Timestamp(System.currentTimeMillis()));
 
 		return bookingRepository.save(theBooking);	
 	}
