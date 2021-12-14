@@ -15,7 +15,7 @@ Persistence and endpoints Tests were implemented using Junit.
 ## Requirements
 For building and running the application you need:
 
-- [JDK 1.11](https://www.oracle.com/java/technologies/javase-downloads.html#JDK11)
+- [JDK 11.1](https://www.oracle.com/java/technologies/javase-downloads.html#JDK11)
 - [Maven 3](https://maven.apache.org/) (or later)
 - [Postgres 13](https://www.postgresql.org/about/news/postgresql-13-released-2077/)
 
