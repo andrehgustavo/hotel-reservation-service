@@ -139,6 +139,12 @@ public class BookingServiceImpl implements BookingService{
 		}
 	}
 
+	/**
+	 * Method to retrieve checkin and checkout of a list
+	 * @param period - list of string dates.
+	 * @return an array with two dates
+	 * @throws ParseException
+	 */
 	private java.sql.Date[] getCheckinCheckout(List<String> period) throws ParseException {	
 		DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
 		java.sql.Date[] result = new java.sql.Date[2];
@@ -166,6 +172,10 @@ public class BookingServiceImpl implements BookingService{
 		}
 	}
 
+	/**
+	 * Method to create a exclusive booking number 
+	 * @return
+	 */
 	private Long getValidBookingNumber() {
 		Long bookingNumber = (Long) new Date().getTime();
 		while(bookingRepository.existsByNumber(bookingNumber)){
