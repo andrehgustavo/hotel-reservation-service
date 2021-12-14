@@ -41,7 +41,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.assertj.core.api.Assertions.assertThat;
 
 @WebMvcTest(BookingController.class)
-public class BookingControllerTest {
+public class BookingControllerUnitTests {
 
     @Autowired
 	private MockMvc mockMvc;

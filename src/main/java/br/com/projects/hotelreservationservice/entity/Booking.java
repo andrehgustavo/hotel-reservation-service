@@ -47,12 +47,10 @@ public class Booking implements Serializable{
 
     /** Hotel check-in date.*/
     @Column(name = "checkin")
-    @NotNull
     private Date checkin;
 
     /** Hotel check-out date.*/
     @Column(name = "checkout")
-    @NotNull
     private Date checkout;
 
     /** Hotel associated with a booking.*/
@@ -119,6 +117,18 @@ public class Booking implements Serializable{
 
 
     public Booking(Customer customer, Hotel hotel, Date checkout, Date checkin, LoyaltyProgram type, String remarks) {
+        this.customer = customer;
+        this.checkin = checkin;
+        this.checkout = checkout;
+        this.hotel = hotel;
+        this.type = type;
+        this.remarks = remarks;
+        this.bookingDate = new Timestamp(System.currentTimeMillis());
+        this.active = true;
+    }
+
+    public Booking(Long id, Customer customer, Hotel hotel, Date checkout, Date checkin, LoyaltyProgram type, String remarks) {
+        this.id = id;
         this.customer = customer;
         this.checkin = checkin;
         this.checkout = checkout;
